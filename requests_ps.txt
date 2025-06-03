@@ -1,0 +1,71 @@
+$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$session.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+Invoke-WebRequest -UseBasicParsing -Uri "https://us.nkrpg.com/api/sexual_dating/claimItemExplore" `
+-Method "POST" `
+-WebSession $session `
+-Headers @{
+"authority"="us.nkrpg.com"
+  "method"="POST"
+  "path"="/api/sexual_dating/claimItemExplore"
+  "scheme"="https"
+  "accept"="*/*"
+  "accept-encoding"="gzip, deflate, br, zstd"
+  "accept-language"="zh-CN,zh;q=0.9"
+  "origin"="https://osapi.nutaku.com"
+  "priority"="u=1, i"
+  "referer"="https://osapi.nutaku.com/"
+  "sec-ch-ua"="`"Chromium`";v=`"128`", `"Not;A=Brand`";v=`"24`", `"Google Chrome`";v=`"128`""
+  "sec-ch-ua-mobile"="?0"
+  "sec-ch-ua-platform"="`"macOS`""
+  "sec-fetch-dest"="empty"
+  "sec-fetch-mode"="cors"
+  "sec-fetch-site"="cross-site"
+  "x-qookia-build"="26.0.0.807"
+  "x-qookia-device"="33b5ded0-e120-416b-98df-656559ccd7f7"
+  "x-qookia-device-type"="web"
+  "x-qookia-digest"="be143a92df94b6d6d2d807e4c6049cc26f444eee"
+  "x-qookia-nkid"="150226158"
+  "x-qookia-pack"="5950a5595066f15f0c2647e2471e536a8e0f881b"
+  "x-qookia-server-prefix"="ZVM"
+  "x-qookia-time"="1746677136"
+  "x-qookia-user"="xxx"
+} `
+-ContentType "application/x-www-form-urlencoded" `
+-Body "event_id=21"
+
+&&
+
+$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$session.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+Invoke-WebRequest -UseBasicParsing -Uri "https://us.nkrpg.com/api/quiz_dating/claim/explore/item" `
+-Method "POST" `
+-WebSession $session `
+-Headers @{
+"authority"="us.nkrpg.com"
+  "method"="POST"
+  "path"="/api/quiz_dating/claim/explore/item"
+  "scheme"="https"
+  "accept"="*/*"
+  "accept-encoding"="gzip, deflate, br, zstd"
+  "accept-language"="zh-CN,zh;q=0.9"
+  "origin"="https://osapi.nutaku.com"
+  "priority"="u=1, i"
+  "referer"="https://osapi.nutaku.com/"
+  "sec-ch-ua"="`"Chromium`";v=`"128`", `"Not;A=Brand`";v=`"24`", `"Google Chrome`";v=`"128`""
+  "sec-ch-ua-mobile"="?0"
+  "sec-ch-ua-platform"="`"macOS`""
+  "sec-fetch-dest"="empty"
+  "sec-fetch-mode"="cors"
+  "sec-fetch-site"="cross-site"
+  "x-qookia-build"="26.0.0.807"
+  "x-qookia-device"="33b5ded0-e120-416b-98df-656559ccd7f7"
+  "x-qookia-device-type"="web"
+  "x-qookia-digest"="be143a92df94b6d6d2d807e4c6049cc26f444eee"
+  "x-qookia-nkid"="150226158"
+  "x-qookia-pack"="5950a5595066f15f0c2647e2471e536a8e0f881b"
+  "x-qookia-server-prefix"="ZVM"
+  "x-qookia-time"="1746677164"
+  "x-qookia-user"="xxx"
+} `
+-ContentType "application/x-www-form-urlencoded" `
+-Body "event_id=15"
