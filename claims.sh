@@ -32,12 +32,20 @@ for cmd_block in "${commands[@]}"; do
     echo ""
 
     t=$(date "+%Y-%m-%d %H:%M:%S")
-    if echo "$resp" | jq -e '.response.reward_list[0].value' >/dev/null 2>&1; then
-        v=$(echo "$resp" | jq -r '.response.reward_list[0].value')
-        echo -e "[$t] 领取成功：$v"
+    if echo "$resp" | jq empty >/dev/null 2>&1; then
+        echo "JSON解析成功"
+        if echo "$resp" | jq -e '.success' >/dev/null 2>&1; then
+            v=$(echo "$resp" | jq -r '.response.reward_list[0].value')
+            echo -e "[$t] 领取成功：$v"
+        else
+            echo -e "[$t] 领取失败"
+            echo "抓包数据已过期, 将重置$FILE_PATH文件"
+            cat "$SCRIPT_DIR/example_requests.txt" > "$FILE_PATH"
+        fi
     else
-        echo -e "[$t] 解析失败"
+        echo "JSON解析失败"
     fi
+    echo ""
     echo "----------------------------------------"
     sleep 2
 done
