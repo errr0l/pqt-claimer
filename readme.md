@@ -1,5 +1,41 @@
 # pqt挂机活动收菜脚本
 
+### 更新日志
+
+1、202508
+
+1）取消使用&&符号分割命令
+
+其他跟原来保持一致，如：
+
+```text
+curl 'https://us.nkrpg.com/api/quiz_dating/claim/explore/item' \
+  ...
+  -H 'x-qookia-build: 26.0.0.807' \
+  -H 'x-qookia-device: c4d04f3a-6472-48e2-8224-d93cb8e5e477' \
+  -H 'x-qookia-device-type: web' \
+  -H 'x-qookia-digest: 61c1434a72001471d468021d250c8d31a515f928' \
+  -H 'x-qookia-nkid: 61916215' \
+  -H 'x-qookia-pack: 95199d7e0a765a0fcf12cc3ad9486e3ca13a9fa8' \
+  -H 'x-qookia-server-prefix: xxx' \
+  -H 'x-qookia-time: 1747097634' \
+  -H 'x-qookia-user: xxx' \
+  --data-raw 'event_id=15'
+
+curl 'https://us.nkrpg.com/api/sexual_dating/claimItemExplore' \
+  ...
+  -H 'x-qookia-build: 26.0.0.807' \
+  -H 'x-qookia-device: c4d04f3a-6472-48e2-8224-d93cb8e5e477' \
+  -H 'x-qookia-device-type: web' \
+  -H 'x-qookia-digest: 61c1434a72001471d468021d250c8d31a515f928' \
+  -H 'x-qookia-nkid: 61916215' \
+  -H 'x-qookia-pack: 95199d7e0a765a0fcf12cc3ad9486e3ca13a9fa8' \
+  -H 'x-qookia-server-prefix: xxx' \
+  -H 'x-qookia-time: 1747097646' \
+  -H 'x-qookia-user: xxx' \
+  --data-raw 'event_id=21'
+```
+
 ### 一、使用方式
 
 windows使用claims.ps1和以及requests_ps.txt，mac或linux使用claims.sh和requests.txt。

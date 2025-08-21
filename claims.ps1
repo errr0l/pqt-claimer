@@ -1,42 +1,23 @@
-$scriptPath = $MyInvocation.MyCommand.Path
-$scriptDir = Split-Path -Parent $scriptPath
+$content = Get-Content (Join-Path $PSScriptRoot requests_ps.txt) -Raw
 
-$filePath = Join-Path -Path $scriptDir -ChildPath "requests_ps.txt"
+$processed = $content -replace '\\\n\s+', '' 
 
-if (-not (Test-Path $filePath)) {
-    Write-Host "requests_ps.txt 文件不存在: $filePath"
-    exit 1
-}
+$parts = $processed.Split([Environment]::NewLine) | Where-Object { $_ -ne '' }
 
-$content = Get-Content -Path $filePath -Raw
-
-$commands = $content -split '&&'
-
-foreach ($cmd_block in $commands) {
-
-    $trimmed = $cmd_block.Trim()
-
-    if ([string]::IsNullOrWhiteSpace($trimmed)) {
-        continue
-    }
-
-    # 合并换行并去除反斜杠转义
-    #$command = $trimmed -replace '\\\s+', ' ' -replace '\s+', ' '
-
+foreach ($command in $parts) {
     Write-Host "执行中..."
-    Write-Host "$trimmed"
+    Write-Host $command
     Write-Host ""
-
+    
     try {
-        $resp = Invoke-Expression $trimmed
-    } catch {
-        $resp = "错误: $_"
+        $resp = & $command
+        Write-Host "响应内容:"
+        Write-Host $resp
     }
-    $t = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Write-Host "响应内容:"
-    Write-Host "$resp"
-    Write-Host ""
-    Write-Output $t
+    catch {
+        Write-Host "执行错误: $_"
+    }
+    
     Write-Host "----------------------------------------"
     Start-Sleep -Seconds 2
 }

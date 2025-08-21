@@ -11,8 +11,6 @@ curl 'https://us.nkrpg.com/api/quiz_dating/claim/explore/item' \
   -H 'x-qookia-user: xxx' \
   --data-raw 'event_id=15'
 
-&&
-
 curl 'https://us.nkrpg.com/api/sexual_dating/claimItemExplore' \
   ...
   -H 'x-qookia-build: 26.0.0.807' \
