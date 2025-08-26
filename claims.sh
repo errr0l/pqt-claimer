@@ -1,6 +1,8 @@
 #!/bin/bash
 
-content=$(< "$(dirname "$0")/requests.txt")
+FILE_DIR="$(dirname "$0")"
+FILE_PATH="$FILE_DIR/requests.txt"
+content=$(< $FILE_PATH)
 
 # 删除反斜杠+换行+空白
 processed=$(echo "$content" | sed -e ':a' -e 'N' -e '$!ba' -e 's/\\\n[[:space:]]*//g')
@@ -29,7 +31,8 @@ for ((i=0; i<${#parts[@]}; i++)); do
             else
                 echo -e "[$t] 领取失败"
                 echo "抓包数据已过期, 将重置$FILE_PATH文件"
-                cat "$SCRIPT_DIR/example_requests.txt" > "$FILE_PATH"
+                cat "$FILE_DIR/example_requests.txt" > "$FILE_PATH"
+                break
             fi
         else
             echo "[$t] JSON解析失败"
