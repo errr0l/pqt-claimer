@@ -25,14 +25,13 @@ for ((i=0; i<${#parts[@]}; i++)); do
         t=$(date "+%Y-%m-%d %H:%M:%S")
         if echo "$resp" | jq empty >/dev/null 2>&1; then
             echo "JSON解析成功"
-            if echo "$resp" | jq -e '.success' >/dev/null 2>&1; then
-                v=$(echo "$resp" | jq -r '.response.reward_list[0].value')
-                echo -e "[$t] 领取成功：$v"
-            else
-                echo -e "[$t] 领取失败"
+            if echo "$resp" | jq -e '(.error_message // empty) == "REQUIRE_LOGIN"' > /dev/null 2>&1; then
+                echo -e "[$t] 请求失败"
                 echo "抓包数据已过期, 将重置$FILE_PATH文件"
                 cat "$FILE_DIR/example_requests.txt" > "$FILE_PATH"
                 break
+            else
+                echo -e "[$t] 请求成功"
             fi
         else
             echo "[$t] JSON解析失败"
